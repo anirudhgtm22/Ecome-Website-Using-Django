@@ -1,0 +1,63 @@
+{%extends 'base.html' %}
+{%block title%}Cakes{%endblock title%}
+{% block body%}
+{% load cart %}
+<div class="container-fluid" mx-4 my-4>
+    <h1 class="my-2 text-center">Cakes</h1>
+    <div class="row">
+      {%if cakes%}
+      {% for cake in cakes %}
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="{{ cake.image.url }}" alt="{{ cake.name }}">
+          {% comment %} <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" src={{ cake.image }} data-holder-rendered="true"> {% endcomment %}
+          <div class="card-body">
+            <h2>{{ cake.name }}</h2>
+            <p> {{ cake.description}}</p>
+            <p> {{cake.weight}}Kg</p>
+            <p> Rs{{cake.price}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              {% comment %} {{cake | is_in_cart:request.session.cart}} {% endcomment %}
+              
+            </div>
+          </div>
+          <div class="card-footer p-20 row no-gutters">
+            {%if cake|is_in_cart:request.session.cart%}
+            <div class="row no-gutters" >
+              <div class="d-flex">
+              <form action="/checkout" class="col-2" method="POST"> 
+                {%csrf_token%}
+                <input hidden type="text" value ="{{cake.id}}" name ="cake">
+                <input hidden type="text" value ="true" name ="remove">
+               <input type="submit" value="-" class="btn btn-block btn-secondary">
+              </form>
+              <span class="text-center-row" style="margin-right: 20px;">{{cake | cart_quantity:request.session.cart}} in cart</span>
+              <form action="/checkout" class="col-2" method="POST"> 
+                {%csrf_token%}
+                <input hidden type="text" value ="{{cake.id}}" name ="cake">
+               <input type="submit" value="+" class="btn btn-block btn-secondary">
+              </form>
+            </div>
+            </div>
+            {%else%}
+            <form action ='/checkout' method ="POST" class="btn-block">
+              {% csrf_token %} 
+              <input hidden type="text" value ="{{cake.id}}" name ="cake">
+                <input type="submit" class="float-right btn btn-light border form control" value="Add To Cart" >
+            </form>
+            {%endif%}
+         </div>
+        </div>
+      </div>
+      
+      {% endfor %}
+      {% else %}
+		<p>No categories found.</p>
+	{% endif %}
+	
+    </div>
+  </div> 
+
+{%endblock body%}
+
+

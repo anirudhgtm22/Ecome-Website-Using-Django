@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" dir="Itr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" integrity="sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51" crossorigin="anonymous"> 
+	
+    <title>{% block title %}{% endblock title %} | Sweet Desires</title>
+	
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Sweet Desires</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          {% comment %} <div class="mx-auto">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" align="center">
+              <button class="btn btn-outline-light" type="submit" align="center">Search</button>
+           </form>
+         </div> {% endcomment %}
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/orders_placed">Orders</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/products" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Our products
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/cakes">Cakes</a></li>
+                  <li><a class="dropdown-item" href="/cakes"></a>Desserts</li>
+                  <li><a class="dropdown-item" href="#"></a>Special Order</li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/go_cart">Cart</a>
+              </li>
+			  {% if request.session.customer_id %}
+    				<form action="{% url 'logout' %}" method="post">
+        		   	  {% csrf_token %}
+        		      <button type="submit" class="btn btn-primary">Logout</button>
+    				</form>
+				{% else %}
+				<a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+			{% endif %}
+			
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+ 
+      {% block body %}{% endblock body %}
+
+      <!-- Footer -->
+ <footer class="text-center text-lg-start bg-white text-muted">
+	<!-- Section: Social media -->
+	<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+	  <!-- Left -->
+	  <div class="me-5 d-none d-lg-block">
+		{% comment %} <span>Get connected with us on social networks:</span> {% endcomment %}
+	  </div>
+	  <!-- Left -->
+  
+	  <!-- Right -->
+	  <div>
+		{% comment %} <a href="www.facebook.com/" class="me-4 link-secondary">
+		  <i class="fab fa-facebook-f"></i>
+		</a>
+		<a href="" class="me-4 link-secondary">
+		  <i class="fab fa-twitter"></i>
+		</a>
+		<a href="" class="me-4 link-secondary">
+		  <i class="fab fa-google"></i>
+		</a>
+		<a href="" class="me-4 link-secondary">
+		  <i class="fab fa-instagram"></i>
+		</a>
+		<a href="" class="me-4 link-secondary">
+		  <i class="fab fa-linkedin"></i>
+		</a>
+		<a href="" class="me-4 link-secondary">
+		  <i class="fab fa-github"></i>
+		</a> {% endcomment %}
+	  </div>
+	  <!-- Right -->
+	</section>
+	<!-- Section: Social media -->
+  
+	<!-- Section: Links  -->
+	<section class="">
+	  <div class="container text-center text-md-start mt-5">
+		<!-- Grid row -->
+		<div class="row mt-3">
+		  <!-- Grid column -->
+		  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+			<!-- Content -->
+			<h6 class="text-uppercase fw-bold mb-4">
+			  <i class="fas fa-gem me-3 text-secondary"></i>Sweet Desires
+			</h6>
+			<p>
+			  Baking your cravings with Sweetness
+			</p>
+		  </div>
+		  <!-- Grid column -->
+  
+		  <!-- Grid column -->
+		  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+			<!-- Links -->
+			<h6 class="text-uppercase fw-bold mb-4">
+			  Products
+			</h6>
+			<p>
+			  <a href="/cakes" class="text-reset">Cakes</a>
+			</p>
+			<p>
+			  <a href="#!" class="text-reset">Desserts</a>
+			</p>
+			<p>
+			  <a href="#!" class="text-reset">Special Orders</a>
+			</p>
+		  </div>
+		  <!-- Grid column -->
+  
+		  <!-- Grid column -->
+		  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+			<!-- Links -->
+			<h6 class="text-uppercase fw-bold mb-4">
+			  Useful links
+			</h6>
+			<p>
+			  <a href='/' class="text-reset">Home</a>
+			</p>
+			<p>
+			  <a href="/about" class="text-reset">About</a>
+			</p>
+			<p>
+			  <a href="/contact" class="text-reset">Contact Us</a>
+			</p>
+		  </div>
+		  <!-- Grid column -->
+  
+		  <!-- Grid column -->
+		  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+			<!-- Links -->
+			<h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+			<p><i class="fas fa-home me-3 text-secondary"></i> New Delhi,India</p>
+			<p>
+			  <i class="fas fa-envelope me-3 text-secondary"></i>
+			  sweet.desires@gmail.com
+			</p>
+			<p><i class="fas fa-phone me-3 text-secondary"></i>+91 9999888822</p>
+			
+		  </div>
+		  <!-- Grid column -->
+		</div>
+		<!-- Grid row -->
+	  </div>
+	</section>
+	<!-- Section: Links  -->
+  
+	<!-- Copyright -->
+	<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+	  © 2021 Copyright:
+	  <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Sweet Desires</a>
+	</div>
+	<!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+      <!-- Optional JavaScript; choose one of the two! -->
+
+    
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    -->
+    
+	{% block js %}{% endblock js %}
+  </body>
+</html>
